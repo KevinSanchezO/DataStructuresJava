@@ -4,7 +4,9 @@
  */
 package datastructuresjava;
 
+import java.util.Random;
 import java.util.Scanner;
+import linkedlist.List;
 
 /**
  *
@@ -34,7 +36,7 @@ public class DataStructuresJava {
             int option = scanner.nextInt();
             switch (option) {
                 case 1:
-                    System.out.println("\nLinked list");
+                    linkedListsMenu();
                     break;
                 case 2:
                     System.out.println("\nTrees");
@@ -55,9 +57,49 @@ public class DataStructuresJava {
         } while (operating);
     }
     
-    private void linkedListsMenu() {
+    private static void linkedListsMenu() {
+        List linkedList = new List();
         Scanner scanner = new Scanner(System.in);
         boolean operating = true;
         
+        do {
+            System.out.println("\nLinked list menu");
+            System.out.println("1. Fill list");
+            System.out.println("2. Show list");
+            System.out.println("3. Apply sorting algorithm");
+            System.out.println("4. Search algorithm");
+            System.out.println("5. Go back");
+            
+            int option = scanner.nextInt();
+            switch (option) {
+                case 1:
+                    fillList(linkedList);
+                    break;
+                case 2:
+                    linkedList.printList();
+                    break;
+                default:
+                    System.out.println("\nInvalid option selected");
+                    break;
+            }
+        } while (operating);
+        
+    }
+    
+    private static void fillList(List linkedList) {
+        Scanner scanner = new Scanner(System.in);
+        Random rand = new Random();
+        System.out.println("How many items do you want? [1-999]");
+        int quantity = scanner.nextInt();
+        
+        if (0 < quantity && quantity < 1000) {
+            for (int i = 0; i <= quantity; i++) {
+                int randomNumber = rand.nextInt(9999) + 1;
+                linkedList.addNode(randomNumber);
+            }
+            System.out.println("\nList filled");
+        } else {
+            System.out.println("\n Invalid quantity of elements");
+        }
     }
 }

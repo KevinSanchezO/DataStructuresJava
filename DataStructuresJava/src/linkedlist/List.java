@@ -38,4 +38,13 @@ public class List {
         this.tail = newNode;
         size++;
     }
+    
+    public void printList() {
+        Node index = head;
+        while (index != null) {
+            System.out.println( index.getData() + " -> ");
+            index = index.getNext();
+        }
+        System.out.println("[]");
+    }
 }
