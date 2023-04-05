@@ -78,6 +78,12 @@ public class DataStructuresJava {
                 case 2:
                     linkedList.printList();
                     break;
+                case 3:
+                    applySortingAlgorithm(linkedList);
+                    break;
+                case 5:
+                    operating = false;
+                    break;
                 default:
                     System.out.println("\nInvalid option selected");
                     break;
@@ -99,7 +105,22 @@ public class DataStructuresJava {
             }
             System.out.println("\nList filled");
         } else {
-            System.out.println("\n Invalid quantity of elements");
+            System.out.println("\n Invalid quantity of elements1");
+        }
+    }
+    
+    private static void applySortingAlgorithm(List linkedList) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\n1. Merge Sort");
+        int option = scanner.nextInt();
+        
+        switch (option) {
+            case 1:
+                linkedList.applyMergeSort();
+                break;
+            default:
+                System.out.println("\nInvalid option selected");
+                break;
         }
     }
 }

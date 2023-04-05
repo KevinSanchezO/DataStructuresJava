@@ -47,4 +47,79 @@ public class List {
         }
         System.out.println("[]");
     }
+    
+    /*
+    =============== MERGE SORT ALGORITHM ===============
+    */
+    
+    public void applyMergeSort()  {
+        long startTime = System.currentTimeMillis();
+        
+        Node sortedHead = mergeSort(this.head);
+        this.head = sortedHead;
+        long endTime = System.currentTimeMillis();
+        printList();
+        
+        long timeTaken = endTime - startTime;
+        
+        System.out.println("\nTime Merge Sort algorithm: " + timeTaken);
+    }
+    
+    //main method, splits the list into halfs to merge them sorted recursively
+    private Node mergeSort(Node head) {
+        if (head == null || head.getNext() == null) {
+            return head;
+        }
+        
+        // Split the list into two halves.
+        Node secondHalfHead = split(head);
+        
+        // Recursively sort both halves of the list.
+        Node firstHalfSorted = mergeSort(head);
+        Node secondHalfSorted = mergeSort(secondHalfHead);
+        
+        // Merge the sorted halves of the list.
+        return merge(firstHalfSorted, secondHalfSorted);
+    }
+    
+    //method to split into half the list, it uses a 
+    private Node split(Node head) {
+        Node slow = head;
+        Node fast = head.getNext();
+        
+        while (fast != null) {
+            fast = fast.getNext();
+            if (fast != null) {
+                slow = slow.getNext();
+                fast = fast.getNext();
+            }
+        }
+        
+        Node secondHalfHead = slow.getNext();
+        slow.setNext(null);
+        if (secondHalfHead != null) {
+            secondHalfHead.setPrev(null);
+        }
+        return secondHalfHead;
+    }
+    
+    private Node merge(Node first, Node second) {
+        if (first == null) {
+            return second;
+        }
+        if (second == null) {
+            return first;
+        }
+        Node result;
+        if (first.getData() <= second.getData()) {
+            result = first;
+            result.setNext(merge(first.getNext(), second));
+        } else {
+            result = second;
+            result.setNext(merge(first, second.getNext()));
+        }
+        result.getNext().setPrev(result);
+        result.setPrev(null);
+        return result;
+    }
 }
