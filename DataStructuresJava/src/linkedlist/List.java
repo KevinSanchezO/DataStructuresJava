@@ -10,12 +10,10 @@ package linkedlist;
  */
 public class List {
     private Node head;
-    private Node tail;
     private int size;
     
     public List() {
         this.head = null;
-        this.tail = null;
         this.size = 0;
     }
     
@@ -32,10 +30,13 @@ public class List {
         if (isEmpty()) {
             this.head = newNode;
         } else {
-            this.tail.setNext(newNode);
-            newNode.setPrev(tail);
+            Node current = this.head;
+            while (current.getNext() != null) {
+                current = current.getNext();
+            }
+            current.setNext(newNode);
+            newNode.setPrev(current);
         }
-        this.tail = newNode;
         size++;
     }
     
@@ -50,6 +51,9 @@ public class List {
     
     /*
     =============== MERGE SORT ALGORITHM ===============
+    O(n log n)
+    The idea is to divide the linked list into halves recursively, sort 
+    the two halves individually, and then merge them together.
     */
     
     public void applyMergeSort()  {

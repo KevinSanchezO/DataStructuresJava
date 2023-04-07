@@ -4,6 +4,7 @@
  */
 package datastructuresjava;
 
+import BinarySearchTrees.BinaryTree;
 import java.util.Random;
 import java.util.Scanner;
 import linkedlist.List;
@@ -31,7 +32,7 @@ public class DataStructuresJava {
             System.out.println("2. Trees");
             System.out.println("3. Graphs");
             System.out.println("4. Hash tables");
-            System.out.println("5. Exit");
+            System.out.println("0. Exit");
             
             int option = scanner.nextInt();
             switch (option) {
@@ -39,7 +40,7 @@ public class DataStructuresJava {
                     linkedListsMenu();
                     break;
                 case 2:
-                    System.out.println("\nTrees");
+                    treesMenu();
                     break;
                 case 3:
                     System.out.println("\nGraphs");
@@ -47,7 +48,7 @@ public class DataStructuresJava {
                 case 4:
                     System.out.println("\nHash tables");
                     break;
-                case 5:
+                case 0:
                     operating = false;
                     break;
                 default:
@@ -67,8 +68,7 @@ public class DataStructuresJava {
             System.out.println("1. Fill list");
             System.out.println("2. Show list");
             System.out.println("3. Apply sorting algorithm");
-            System.out.println("4. Search algorithm");
-            System.out.println("5. Go back");
+            System.out.println("0. Go back");
             
             int option = scanner.nextInt();
             switch (option) {
@@ -81,7 +81,7 @@ public class DataStructuresJava {
                 case 3:
                     applySortingAlgorithm(linkedList);
                     break;
-                case 5:
+                case 0:
                     operating = false;
                     break;
                 default:
@@ -122,5 +122,74 @@ public class DataStructuresJava {
                 System.out.println("\nInvalid option selected");
                 break;
         }
+    }
+    
+    private static void treesMenu() {
+        Scanner scanner = new Scanner(System.in);
+        boolean operating = true;
+        
+        do {
+            System.out.println("\nChoose a type of tree");
+            System.out.println("1. Binary Search Tree");
+            System.out.println("0. Go back");
+            
+            int option = scanner.nextInt();
+            switch (option) {
+                case 1:
+                    binarySearchTree();
+                    break;
+                case 0:
+                    operating = false;
+                    break;
+                default:
+                    System.out.println("\nInvalid option selected");
+                    break;
+            }
+        } while (operating);
+    }
+    
+    private static void binarySearchTree() {
+        BinaryTree binaryTree = new BinaryTree();
+        Scanner scanner = new Scanner(System.in);
+        boolean operating = true;
+        
+        do {
+            System.out.println("\nBinary Search Tree");
+            System.out.println("1. Insert");
+            System.out.println("2. Delete");
+            System.out.println("3. Print");
+            System.out.println("0. Go back");
+            int option = scanner.nextInt();
+            
+            switch (option) {
+                case 1:
+                    fillBinarySearchTree(binaryTree);
+                    break;
+                case 2:
+                    
+                    break;
+                case 3:
+                    binaryTree.print();
+                    break;
+                case 0:
+                    operating = false;
+                    break;
+            }
+        } while (operating);
+    }
+    
+    
+    //ONLY NUMBERS, I'm to lazy to make the validation rn
+    //Maybe I won't do it, I'm doing this just to remember all these
+    //structures
+    private static void fillBinarySearchTree(BinaryTree binaryTree) {
+        Scanner scanner = new Scanner(System.in);
+        int item = 0;
+        do {
+            System.out.println("What item would you like to insert?");
+            item = scanner.nextInt();
+            binaryTree.insert(item);
+            binaryTree.print();
+        } while (item != 0);
     }
 }
