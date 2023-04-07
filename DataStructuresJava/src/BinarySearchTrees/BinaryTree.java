@@ -54,8 +54,6 @@ public class BinaryTree {
     }
     
     private Node deleteTree(Node root, int key){
-        if  (root != null) {
-            
-        }
+        return root;
     }
 }
